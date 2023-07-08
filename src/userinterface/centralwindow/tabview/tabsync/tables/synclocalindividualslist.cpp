@@ -26,7 +26,7 @@ void SyncLocalIndividualsList::defaultSettings()
 {
     QSettings settings;
     settings.setValue("window/syncTab/localMatch/idCol", 25);
-    settings.setValue("window/syncTab/localMatch/nameCol", 105);
+    settings.setValue("window/syncTab/localMatch/nameCol", 155);
     settings.setValue("window/syncTab/localMatch/surnameCol", 105);
     settings.setValue("window/syncTab/localMatch/birthCol", 55);
 }
@@ -95,8 +95,7 @@ QVector<Identifier> SyncLocalIndividualsList::getRefIndividualMatches()
 void SyncLocalIndividualsList::fill()
 {
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    this->setSelectionBehavior(QAbstractItemView::SelectRows);
-    this->setSelectionMode(QAbstractItemView::SingleSelection);
+    this->setSelectionMode(QAbstractItemView::NoSelection);
 
     this->setColumnCount(4);
     this->setHorizontalHeaderLabels(QStringList()
@@ -108,7 +107,7 @@ void SyncLocalIndividualsList::fill()
     this->horizontalHeader()->setMinimumSectionSize(0);
     this->verticalHeader()->hide();
     this->applySettings();
-    this->setFixedWidth(307);
+    this->setFixedWidth(357);
     this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 }
@@ -122,9 +121,27 @@ void SyncLocalIndividualsList::applySettings()
     this->setColumnWidth(3, settings.value("window/syncTab/localMatch/birthCol").toInt());
 }
 
+void SyncLocalIndividualsList::selectRow(int row)
+{
+    // Uncolor other rows
+    for(int r = 0; r < this->rowCount(); r++){
+        for(int i = 0; i < 4; i++){
+            this->item(r, i)->setData(Qt::BackgroundRole, QVariant());
+        }
+    }
+
+    // Color selected row
+    if(row < this->rowCount()){
+        for(int i = 0; i < 4; i++){
+            this->item(row,i)->setData(Qt::BackgroundRole, QBrush(QColor("#a2caf2")));
+        }
+    }
+}
+
 void SyncLocalIndividualsList::individualClicked(int row, int col)
 {
     this->_selected = _items[row][col]->getIdentifier();
+    this->selectRow(row);
     emit(this->individualChosen(this->_selected));
 }
 
@@ -231,10 +248,6 @@ void SyncLocalIndividualsList::remove()
 {
     for(auto v1 = _items.begin(); v1 != _items.end(); v1++)
     {
-//        for(auto v2 = v1->begin(); v2 != v1->end(); v2++)
-//        {
-//            delete (*v2);
-//        }
         v1->clear();
     }
 

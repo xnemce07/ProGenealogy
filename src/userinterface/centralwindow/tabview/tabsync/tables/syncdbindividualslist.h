@@ -43,6 +43,8 @@ private:
     void fill();
 
     void applySettings();
+
+    void selectRow(int row);
 public slots:
     void recordClicked(int row, int col);
     virtual void update();

@@ -46,8 +46,7 @@ void SyncDbRecordsList::saveSettings() const
 void SyncDbRecordsList::fill()
 {
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    this->setSelectionBehavior(QAbstractItemView::SelectRows);
-    this->setSelectionMode(QAbstractItemView::SingleSelection);
+    this->setSelectionMode(QAbstractItemView::NoSelection);
 
     this->setColumnCount(4);
     this->setHorizontalHeaderLabels(QStringList()
@@ -72,11 +71,30 @@ void SyncDbRecordsList::applySettings()
     this->setColumnWidth(3, settings.value("window/syncTab/dbRecordsList/impCol").toInt());
 }
 
+void SyncDbRecordsList::selectRow(int row)
+{
+    // Uncolor other rows
+    for(int r = 0; r < this->rowCount(); r++){
+        for(int i = 0; i < 4; i++){
+            this->item(r, i)->setData(Qt::BackgroundRole, QVariant());
+        }
+    }
+
+    // Color selected row
+    if(row < this->rowCount()){
+        for(int i = 0; i < 4; i++){
+            this->item(row,i)->setData(Qt::BackgroundRole, QBrush(QColor("#a2caf2")));
+        }
+    }
+}
+
 void SyncDbRecordsList::individualClicked(int row, int col)
 {
     Identifier ref = _items[row][col]->getIdentifier();
     this->_selected = ref;
+    selectRow(row);
     emit this->recordChosen(ref);
+
 }
 
 void SyncDbRecordsList::update()

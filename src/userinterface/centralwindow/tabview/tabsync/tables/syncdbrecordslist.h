@@ -46,6 +46,7 @@ private:
     void fill();
 
     void applySettings();
+    void selectRow(int row);
 public slots:
     void individualClicked(int row, int col);
     virtual void update();

@@ -47,6 +47,7 @@ private:
     void fill();
 
     void applySettings();
+    void selectRow(int row);
 public slots:
     void update();
     void updateSync();

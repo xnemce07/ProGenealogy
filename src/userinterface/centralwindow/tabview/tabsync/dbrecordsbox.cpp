@@ -83,7 +83,12 @@ void DbRecordsBox::fill(){
     _layout.addWidget(&_pbImportIndividual,5,2,Qt::AlignBottom);
 
     // Adjust widgets
-    _layout.setContentsMargins(this->mediumSpacing(),this->mediumSpacing(),this->mediumSpacing(),0);
+
+    _pbImportIndividual.setFixedHeight(30);
+    _pbSetIndividualImported.setFixedHeight(30);
+    _pbSetRecordImported.setFixedHeight(30);
+
+    _layout.setContentsMargins(this->mediumSpacing(),this->mediumSpacing(),this->mediumSpacing(),this->mediumSpacing());
     _layout.setVerticalSpacing(this->mediumSpacing());
     _layout.setHorizontalSpacing(this->tightSpacing());
 }
@@ -149,7 +154,11 @@ void DbRecordsBox::changedDbRecord(Identifier ref)
     Q_UNUSED(ref)
     _pbImportIndividual.setEnabled(false);
     _pbSetIndividualImported.setEnabled(false);
-    _pbSetRecordImported.setEnabled(true);
+    if(ref.isValid()){
+        _pbSetRecordImported.setEnabled(true);
+    } else {
+        _pbSetRecordImported.setEnabled(false);
+    }
 }
 
 void DbRecordsBox::changedDbIndividual(Identifier ref)

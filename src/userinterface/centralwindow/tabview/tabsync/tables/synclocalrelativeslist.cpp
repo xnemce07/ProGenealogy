@@ -55,8 +55,7 @@ DbRecordRole SyncLocalRelativesList::getSelectedRole() const
 void SyncLocalRelativesList::fill()
 {
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    this->setSelectionBehavior(QAbstractItemView::SelectRows);
-    this->setSelectionMode(QAbstractItemView::SingleSelection);
+    this->setSelectionMode(QAbstractItemView::NoSelection);
 
     this->setColumnCount(5);
     this->setHorizontalHeaderLabels(QStringList()
@@ -257,8 +256,26 @@ void SyncLocalRelativesList::applySettings()
 
 }
 
+void SyncLocalRelativesList::selectRow(int row)
+{
+    // Uncolor other rows
+    for(int r = 0; r < this->rowCount(); r++){
+        for(int i = 0; i < 5; i++){
+            this->item(r, i)->setData(Qt::BackgroundRole, QVariant());
+        }
+    }
+
+    // Color selected row
+    if(row < this->rowCount()){
+        for(int i = 0; i < 5; i++){
+            this->item(row,i)->setData(Qt::BackgroundRole, QBrush(QColor("#DFF2BF")));
+        }
+    }
+}
+
 void SyncLocalRelativesList::individualClicked(int row, int col)
 {
+    selectRow(row);
     this->_selected = _items[row][col]->getIdentifier();
 
     this->_selectedRole = dynamic_cast<TableCellDbRecordRole*>(_items[row][4])->getRole();
@@ -371,5 +388,4 @@ void SyncLocalRelativesList::changedPartner(Identifier ref)
     if(type == DbRecordType::RT_MARRIAGE || type == DbRecordType::RT_MARRIAGE_BRIDE || type == DbRecordType::RT_MARRIAGE_GROOM){
         emit(this->selectedLocalIndividual(_selected, _partner));
     }
-
 }

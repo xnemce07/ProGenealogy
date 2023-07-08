@@ -73,6 +73,9 @@ void LocalRecordsBox::fill(){
     _layout.addWidget(&_pbAddPersonToRole, 7,0, Qt::AlignBottom);
 
     // Adjust widgets
+    _pbAddPersonToRole.setFixedHeight(30);
+
+
     _layout.setHorizontalSpacing(this->tightSpacing());
     _layout.setVerticalSpacing(this->mediumSpacing());
     _layout.setContentsMargins(this->mediumSpacing(),this->mediumSpacing(),this->mediumSpacing(),this->mediumSpacing());

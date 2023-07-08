@@ -46,8 +46,7 @@ void SyncDbIndividualsList::saveSettings() const
 void SyncDbIndividualsList::fill()
 {
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    this->setSelectionBehavior(QAbstractItemView::SelectRows);
-    this->setSelectionMode(QAbstractItemView::SingleSelection);
+    this->setSelectionMode(QAbstractItemView::NoSelection);
 
     this->setColumnCount(6);
     this->setHorizontalHeaderLabels(QStringList()
@@ -77,10 +76,28 @@ void SyncDbIndividualsList::applySettings()
     this->setColumnWidth(5, settings.value("window/syncTab/dbIndividualsList/impCol").toInt());
 }
 
+void SyncDbIndividualsList::selectRow(int row)
+{
+    // Uncolor other rows
+    for(int r = 0; r < this->rowCount(); r++){
+        for(int i = 0; i < 6; i++){
+                this->item(r, i)->setData(Qt::BackgroundRole, QVariant());
+        }
+    }
+
+    // Color selected row
+    if(row < this->rowCount()){
+        for(int i = 0; i < 6; i++){
+            this->item(row,i)->setData(Qt::BackgroundRole, QBrush(QColor("#DFF2BF")));
+        }
+    }
+}
+
 void SyncDbIndividualsList::recordClicked(int row, int col)
 {
     Identifier ref = _items[row][col]->getIdentifier();
     this->_selected = ref;
+    selectRow(row);
     emit(this->dbIndividualSelected(ref, _dbRecord));
 }
 

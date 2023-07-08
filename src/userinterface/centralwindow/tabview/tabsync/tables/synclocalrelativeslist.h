@@ -58,6 +58,8 @@ private:
     QVector<QPair<Identifier, DbRecordRole>> getRelatives();
 
     void applySettings();
+
+    void selectRow(int row);
 public slots:
     void individualClicked(int row, int col);
     void update();

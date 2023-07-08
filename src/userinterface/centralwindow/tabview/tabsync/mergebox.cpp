@@ -41,7 +41,7 @@ void MergeBox::update(){
                 k.record()->setIndividualNameGiven(ref, str);
             };
             
-            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, "Given name", dbString, lString, nameL);
+            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, tr("Given name"), dbString, lString, nameL);
 
             _items.append(sub);
         }
@@ -58,7 +58,7 @@ void MergeBox::update(){
                 k.record()->setIndividualNameSurname(ref, str);
             };
             
-            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, "Surname birth", dbString, lString, nameL);
+            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, tr("Birth name"), dbString, lString, nameL);
             _items.append(sub);
         }
     }
@@ -74,7 +74,7 @@ void MergeBox::update(){
                 k.record()->setIndividualNameMarname(ref, str);
             };
             
-            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, "Surname married", dbString, lString, nameL);
+            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, tr("Married name"), dbString, lString, nameL);
 
             _items.append(sub);
         }
@@ -86,7 +86,7 @@ void MergeBox::update(){
         Gender lGender = _kernel.record()->getIndividualGender(_localIndi);
 
         if(dbGender != lGender && dbGender != Gender::UNDET){
-            SubboxMergeGender *sub = new SubboxMergeGender(_kernel,"Gender",dbGender,lGender);
+            SubboxMergeGender *sub = new SubboxMergeGender(_kernel,tr("Gender"),dbGender,lGender);
             _items.append(sub);
         }
     }
@@ -102,7 +102,7 @@ void MergeBox::update(){
                 k.record()->setIndividualNamePrefix(ref, str);
             };
             
-            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, "Title in front", dbString, lString, nameL);
+            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, tr("Title in front"), dbString, lString, nameL);
 
             _items.append(sub);
         }
@@ -119,7 +119,7 @@ void MergeBox::update(){
                 k.record()->setIndividualNameSuffix(ref, str);
             };
             
-            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, "Title after", dbString, lString, nameL);
+            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, tr("Title after"), dbString, lString, nameL);
 
             _items.append(sub);
         }
@@ -149,7 +149,7 @@ void MergeBox::update(){
             };
 
 
-            SubboxMergeDate *sub = new SubboxMergeDate(_kernel, _mergeInd, "Birth date", birthL);
+            SubboxMergeDate *sub = new SubboxMergeDate(_kernel, _mergeInd, tr("Birth date"), birthL);
             sub->setDbDate(dbDate1, dbDate2, dbDateType);
             sub->setLocalDate(lDate1, lDate2, lDateType);
             sub->finish();
@@ -168,7 +168,7 @@ void MergeBox::update(){
                 k.record()->setIndividualBirthPlaceName(ref, str);
             };
             
-            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, "Birth place", dbString, lString, nameL);
+            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, tr("Birth place"), dbString, lString, nameL);
 
             _items.append(sub);
         }
@@ -193,7 +193,7 @@ void MergeBox::update(){
             };
 
 
-            SubboxMergeDate *sub = new SubboxMergeDate(_kernel, _mergeInd, "Christening date", birthL);
+            SubboxMergeDate *sub = new SubboxMergeDate(_kernel, _mergeInd, tr("Christening date"), birthL);
             sub->setDbDate(dbDate1, dbDate2, dbDateType);
             sub->setLocalDate(lDate1, lDate2, lDateType);
             sub->finish();
@@ -227,7 +227,7 @@ void MergeBox::update(){
                     };
 
 
-                    SubboxMergeDate *sub = new SubboxMergeDate(_kernel, mergeFam ,"Marriage date", marrL);
+                    SubboxMergeDate *sub = new SubboxMergeDate(_kernel, mergeFam ,tr("Marriage date"), marrL);
                     sub->setDbDate(dbDate1, dbDate2, dbDateType);
                     sub->setLocalDate(lDate1, lDate2, lDateType);
                     sub->finish();
@@ -260,7 +260,7 @@ void MergeBox::update(){
             };
 
 
-            SubboxMergeDate *sub = new SubboxMergeDate(_kernel, _mergeInd, "Death date", birthL);
+            SubboxMergeDate *sub = new SubboxMergeDate(_kernel, _mergeInd, tr("Death date"), birthL);
             sub->setDbDate(dbDate1, dbDate2, dbDateType);
             sub->setLocalDate(lDate1, lDate2, lDateType);
             sub->finish();
@@ -279,7 +279,7 @@ void MergeBox::update(){
                 k.record()->setIndividualDeathPlaceName(ref, str);
             };
             
-            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, "Place of death", dbString, lString, nameL);
+            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, tr("Place of death"), dbString, lString, nameL);
 
             _items.append(sub);
         }
@@ -296,7 +296,7 @@ void MergeBox::update(){
                 k.record()->setIndividualDeathCause(ref, str);
             };
             
-            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, "Death cause", dbString, lString, nameL);
+            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, tr("Death cause"), dbString, lString, nameL);
 
             _items.append(sub);
         }
@@ -321,7 +321,7 @@ void MergeBox::update(){
             };
 
 
-            SubboxMergeDate *sub = new SubboxMergeDate(_kernel, _mergeInd, "Burial date", birthL);
+            SubboxMergeDate *sub = new SubboxMergeDate(_kernel, _mergeInd, tr("Burial date"), birthL);
             sub->setDbDate(dbDate1, dbDate2, dbDateType);
             sub->setLocalDate(lDate1, lDate2, lDateType);
             sub->finish();
@@ -340,7 +340,7 @@ void MergeBox::update(){
                 k.record()->setIndividualBurialPlaceName(ref, str);
             };
             
-            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, "Place of death", dbString, lString, nameL);
+            SubboxMergeString *sub = new SubboxMergeString(_kernel, _mergeInd, tr("Place of death"), dbString, lString, nameL);
 
             _items.append(sub);
         }
@@ -372,7 +372,7 @@ void MergeBox::update(){
                     };
 
 
-                    SubboxMergeDate *sub = new SubboxMergeDate(_kernel, mergeFam ,"Marriage date", marrL);
+                    SubboxMergeDate *sub = new SubboxMergeDate(_kernel, mergeFam , tr("Marriage date"), marrL);
                     sub->setDbDate(dbDate1, dbDate2, dbDateType);
                     sub->setLocalDate(lDate1, lDate2, lDateType);
                     sub->finish();
@@ -413,7 +413,7 @@ void MergeBox::update(){
                 };
 
 
-                SubboxMergeDate *sub = new SubboxMergeDate(_kernel, mergeFam ,"Marriage date", marrL);
+                SubboxMergeDate *sub = new SubboxMergeDate(_kernel, mergeFam , tr("Marriage date"), marrL);
                 sub->setDbDate(dbDate1, dbDate2, dbDateType);
                 sub->setLocalDate(lDate1, lDate2, lDateType);
                 sub->finish();
@@ -441,7 +441,7 @@ void MergeBox::update(){
                 };
 
 
-                SubboxMergeDate *sub = new SubboxMergeDate(_kernel, mergeFam, "Divorce date", divL);
+                SubboxMergeDate *sub = new SubboxMergeDate(_kernel, mergeFam, tr("Divorce date"), divL);
                 sub->setDbDate(dbDate1, dbDate2, dbDateType);
                 sub->setLocalDate(lDate1, lDate2, lDateType);
                 sub->finish();
@@ -538,6 +538,9 @@ void MergeBox::fill(){
     _scrollAreaWidget->setContentsMargins(10,0,0,10);
 //    _vLayout.setSpacing(100);
     _layout.setSpacing(10);
+
+    _pbMerge.setFixedHeight(30);
+    _pbReset.setFixedHeight(30);
 
 }
 
