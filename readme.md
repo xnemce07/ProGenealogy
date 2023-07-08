@@ -7,6 +7,8 @@ CONTENTS OF THIS FILE
     * Windows
     * Linux
  * Configuration
+    * App settings
+    * Change DEMoS server URL
  * Synchronization
  * Documentation
  * Repository
@@ -52,8 +54,13 @@ exporting family tree diagrams. It is a multi-platform application.
  
  CONFIGURATION
  -------------
- 
- * Customize the application in Menu > Settings
+ * App settings
+
+   Customize the application in Menu > Settings
+
+ * Change DEMoS server URL
+
+   DEMoS database server URL is defined in `DEMOS_API_ADDRESS` in `\src\kernel\record\recordRAM\primitives.h`. For change to take effect, the app must be rebuilt.
 
  SYNCHRONIZATION
  ---------------
